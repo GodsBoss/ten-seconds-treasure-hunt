@@ -99,6 +99,7 @@ class Game
 				@checkPossibleStep()
 				if @possibleStep and e.type is 'click'
 					@level.player = @getPossiblePosition()
+					@checkPossibleStep()
 
 	checkPossibleStep:()->
 		if @possibleStep
