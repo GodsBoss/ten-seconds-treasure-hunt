@@ -15,3 +15,7 @@ window.onload = (e)->
 	resizer = new Resizer window, { width: 320, height: 240 }, { horizontal: 10, vertical: 20 }
 	resizer.addListener new CanvasResizeListener canvas
 	resizer.resize()
+
+	# l = new Loop ((callback)->window.setTimeout callback, 3000), (()->console.log 'Tick!')
+	l = new Loop ((callback)->window.requestAnimationFrame callback), (()->console.log 'Draw!')
+	# l.start()
