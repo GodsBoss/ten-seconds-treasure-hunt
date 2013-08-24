@@ -25,7 +25,9 @@ class Game
 			when Game.STATE.LEVELS
 				@highlightOrStartLevel()
 			when Game.STATE.RUNNING
+				@remainingTime -= @interval
 				@level.tick @interval
+				@handleUserInteraction()
 
 	init:()->
 		@state = Game.STATE.TITLE
@@ -71,3 +73,52 @@ class Game
 	initLevel:(index)->
 		@level = @levelReader.read index
 		@remainingTime = 10
+
+	handleUserInteraction:()->
+		events = @interactionQueue.retrieveEvents()
+		for event in events
+			if event.type is 'mouse'
+				e = event.event
+				x = (e.clientX - e.target.offsetLeft) / @factor
+				y = (e.clientY - e.target.offsetTop) / @factor
+				delete @possibleStep
+				player = @level.player
+				playerCenter =
+					x: player.x * 24 + 80 + 12
+					y: player.y * 24 + 12
+				if Math.abs(x - playerCenter.x) > Math.abs(y - playerCenter.y)
+					if x > playerCenter.x and player.x < @level.getWidth()-1
+						@possibleStep = 'right'
+					else if x < playerCenter.x and player.x > 0
+						@possibleStep = 'left'
+				else
+					if y > playerCenter.y and player.y < @level.getHeight()-1
+						@possibleStep = 'down'
+					else if y < playerCenter.y and player.y > 0
+						@possibleStep = 'up'
+				@checkPossibleStep()
+				if @possibleStep and e.type is 'click'
+					@level.player = @getPossiblePosition()
+
+	checkPossibleStep:()->
+		if @possibleStep
+			nextPosition = @getPossiblePosition()
+			tile = @level.get nextPosition.x, nextPosition.y
+			if tile.type is 'cliff'
+				delete @possibleStep
+			if tile.type is 'sand' and tile.hasObject() and tile.getObject().type is 'tree'
+				delete @possibleStep
+
+	getPossiblePosition:()->
+		nextX = @level.player.x
+		nextY = @level.player.y
+		if @possibleStep is 'up'
+			nextY--
+		if @possibleStep is 'down'
+			nextY++
+		if @possibleStep is 'left'
+			nextX--
+		if @possibleStep is 'right'
+			nextX++
+		x: nextX
+		y: nextY

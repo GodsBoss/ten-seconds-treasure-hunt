@@ -184,3 +184,23 @@ class SpritesData
 			y: 96
 			width: 24
 			height: 24
+		'arrow-up':
+			x: 0
+			y: 168
+			width: 24
+			height: 24
+		'arrow-right':
+			x: 24
+			y: 168
+			width: 24
+			height: 24
+		'arrow-down':
+			x: 48
+			y: 168
+			width: 24
+			height: 24
+		'arrow-left':
+			x: 72
+			y: 168
+			width: 24
+			height: 24
