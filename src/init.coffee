@@ -11,3 +11,7 @@ window.onload = (e)->
 		hint.id = 'html5-hint'
 		document.body.appendChild hint
 		return
+
+	resizer = new Resizer window, 320, 240
+	resizer.addListener new CanvasResizeListener canvas
+	resizer.resize()
