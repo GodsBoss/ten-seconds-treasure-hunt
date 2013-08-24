@@ -1,5 +1,5 @@
 class Resizer
-	constructor:(@window, @width, @height)->
+	constructor:(@window, @size)->
 		@listeners = []
 
 	addListener:(listener)->
@@ -15,6 +15,6 @@ class Resizer
 		@
 
 	getFactor:()->
-		hFactor = Math.max 1, Math.floor(@window.innerWidth / @width)
-		vFactor = Math.max 1, Math.floor(@window.innerHeight / @height)
+		hFactor = Math.max 1, Math.floor(@window.innerWidth / @size.width)
+		vFactor = Math.max 1, Math.floor(@window.innerHeight / @size.height)
 		Math.min hFactor, vFactor
