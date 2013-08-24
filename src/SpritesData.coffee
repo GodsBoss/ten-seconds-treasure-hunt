@@ -15,3 +15,78 @@ class SpritesData
 			height: 24
 			frames: 4
 			time: 1.0
+		sand:
+			x: 0
+			y: 72
+			width: 24
+			height: 24
+		cliff-1:
+			x: 24
+			y: 72
+			width: 24
+			height: 24
+		cliff-2:
+			x: 48
+			y: 72
+			width: 24
+			height: 24
+		cliff-3:
+			x: 72
+			y: 72
+			width: 24
+			height: 24
+		cliff-4:
+			x: 96
+			y: 72
+			width: 24
+			height: 24
+		cliff-5:
+			x: 120
+			y: 72
+			width: 24
+			height: 24
+		cliff-6:
+			x: 144
+			y: 72
+			width: 24
+			height: 24
+		cliff-7:
+			x: 168
+			y: 72
+			width: 24
+			height: 24
+		cliff-8:
+			x: 192
+			y: 72
+			width: 24
+			height: 24
+		cliff-9:
+			x: 216
+			y: 72
+			width: 24
+			height: 24
+		cliff-10:
+			x: 240
+			y: 72
+			width: 24
+			height: 24
+		cliff-11:
+			x: 264
+			y: 72
+			width: 24
+			height: 24
+		cliff-12:
+			x: 288
+			y: 72
+			width: 24
+			height: 24
+		cliff-13:
+			x: 312
+			y: 72
+			width: 24
+			height: 24
+		cliff-14:
+			x: 336
+			y: 72
+			width: 24
+			height: 24
