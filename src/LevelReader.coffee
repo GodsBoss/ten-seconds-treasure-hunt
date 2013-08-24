@@ -19,19 +19,19 @@ class LevelReader
 						tile = Tile.create 'sand'
 					when '~'
 						tile = Tile.create 'water'
-						tile.setObject { type: 'reef' }
+						tile.setObject new Obstacle 'reef'
 					when '^'
 						tile = Tile.create 'water'
-						tile.setObject { type: 'rock' }
+						tile.setObject new Obstacle 'rock'
 					when 'O'
 						tile = Tile.create 'cliff'
 						hasCliffs = yes
 					when 'T'
 						tile = Tile.create 'sand'
-						tile.setObject { type: 'treasure' }
+						tile.setObject new Treasure
 					when 'o'
 						tile = Tile.create 'sand'
-						tile.setObject { type: 'tree' }
+						tile.setObject new Obstacle 'tree'
 					when 'c'
 						tile = Tile.create 'sand'
 						level.playerStart = { x: x, y: y }

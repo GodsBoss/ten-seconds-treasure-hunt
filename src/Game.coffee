@@ -89,14 +89,14 @@ class Game
 					x: @player.x * 24 + 80 + 12
 					y: @player.y * 24 + 12
 				if Math.abs(x - playerCenter.x) > Math.abs(y - playerCenter.y)
-					if x > playerCenter.x and @player.x < @level.getWidth()-1
+					if x > playerCenter.x
 						@possibleStep = 'right'
-					else if x < playerCenter.x and @player.x > 0
+					else if x < playerCenter.x
 						@possibleStep = 'left'
 				else
-					if y > playerCenter.y and @player.y < @level.getHeight()-1
+					if y > playerCenter.y
 						@possibleStep = 'down'
-					else if y < playerCenter.y and @player.y > 0
+					else if y < playerCenter.y
 						@possibleStep = 'up'
 				@checkPossibleStep()
 				if @possibleStep and e.type is 'click'
@@ -107,11 +107,16 @@ class Game
 	checkPossibleStep:()->
 		if @possibleStep
 			nextPosition = @getPossiblePosition()
+			if nextPosition.x is -1 or nextPosition.y is -1 or nextPosition.x is @level.getWidth() or nextPosition.y is @level.getHeight()
+				delete @possibleStep
+				return
 			tile = @level.get nextPosition.x, nextPosition.y
 			if tile.type is 'cliff'
 				delete @possibleStep
-			if tile.type is 'sand' and tile.hasObject() and tile.getObject().type is 'tree'
-				delete @possibleStep
+			if tile.hasObject()
+				object = tile.getObject()
+				if object.obstacle and not @player.canDestroy(object) and not @player.canAccess(object)
+					delete @possibleStep
 
 	getPossiblePosition:()->
 		nextX = @player.x
@@ -131,3 +136,7 @@ class Game
 		tile = @level.get @player.x, @player.y
 		if tile.hasObject() and tile.getObject().action?
 			tile.getObject().action @game, tile, @player
+
+	winLevel:()->
+
+	loseLevel:()->

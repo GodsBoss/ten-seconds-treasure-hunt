@@ -20,3 +20,9 @@ class Player
 	moveTo:(position)->
 		@x = position.x
 		@y = position.y
+
+	canDestroy:(object)->
+		object.obstacle and object.isDestructible() and @inventory[object.neededForDestruction()]
+
+	canAccess:(object)->
+		object.obstacle and object.isAccessible() and @inventory[object.neededForAccess()]

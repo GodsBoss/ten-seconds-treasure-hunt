@@ -179,6 +179,13 @@ class SpritesData
 			height: 24
 			frames: 4
 			time:1.0
+		'player-by-ship':
+			x: 96
+			y: 144
+			width: 24
+			height: 24
+			frames: 4
+			time: 1.0
 		tree:
 			x: 144
 			y: 96
@@ -204,3 +211,10 @@ class SpritesData
 			y: 168
 			width: 24
 			height: 24
+		whirlpool:
+			x: 192
+			y: 144
+			width: 24
+			height: 24
+			frames: 4
+			time: 0.5

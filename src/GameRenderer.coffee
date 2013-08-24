@@ -62,8 +62,7 @@ class GameRenderer
 					else
 						@graphics.draw object.type, position
 		player = @game.player
-		if player.type is Player.BY_FOOT
-			@graphics.draw 'player-by-foot', {x: player.x * 24 + 80, y: player.y * 24 }, @game.time
+		@graphics.draw 'player-by-' + player.type, {x: player.x * 24 + 80, y: player.y * 24 }, @game.time
 		if @game.possibleStep
 			stepX = player.x * 24 + 80
 			stepY = player.y * 24
