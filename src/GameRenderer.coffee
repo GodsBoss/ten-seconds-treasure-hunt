@@ -46,5 +46,23 @@ class GameRenderer
 			@graphics.draw 'level-choose-border', LevelScreen.iconPositions[@game.highlightedLevel], @game.time
 
 	renderRunningGame:()->
+		level = @game.level
+		for x in [0..level.getWidth()-1]
+			for y in [0..level.getHeight()-1]
+				tile = level.get x, y
+				position = { x: x * 24 + 80, y: y * 24 }
+				if tile.time?
+					@graphics.draw tile.getId(), position, tile.time
+				else
+					@graphics.draw tile.getId(), position
+				if tile.hasObject()
+					object = tile.getObject()
+					if object.time?
+						@graphics.draw object.type, position, object.time
+					else
+						@graphics.draw object.type, position
+		playerTile = level.getPlayerTile()
+		if playerTile.type is 'sand'
+			@graphics.draw 'player-by-foot', {x: level.player.x * 24 + 80, y: level.player.y * 24 }, @game.time
 
 	renderMessage:()->

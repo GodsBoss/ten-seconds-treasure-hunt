@@ -132,3 +132,55 @@ class SpritesData
 			y: 240
 			width: 320
 			height: 240
+		treasure:
+			x: 0
+			y: 120
+			width: 24
+			height: 24
+		cannon:
+			x: 24
+			y: 120
+			width: 24
+			height: 24
+		map:
+			x: 48
+			y: 120
+			width: 24
+			height: 24
+		saber:
+			x: 72
+			y: 120
+			width: 24
+			height: 24
+		scroll:
+			x: 96
+			y: 120
+			width: 24
+			height: 24
+		explosives:
+			x: 120
+			y: 120
+			width: 24
+			height: 24
+		lead:
+			x: 144
+			y: 120
+			width: 24
+			height: 24
+		sextant:
+			x: 168
+			y: 120
+			width: 24
+			height: 24
+		'player-by-foot':
+			x: 0
+			y: 144
+			width: 24
+			height: 24
+			frames: 4
+			time:1.0
+		tree:
+			x: 144
+			y: 96
+			width: 24
+			height: 24

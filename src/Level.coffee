@@ -18,6 +18,9 @@ class Level
 			for y in [0..@size.height-1]
 				@tiles[x + '-' + y].tick time
 
+	getPlayerTile:()->
+		@tiles[@player.x + '-' + @player.y]
+
 	@create = (size)->
 		tiles = {}
 		for x in [0..size.width-1]

@@ -24,6 +24,8 @@ class Game
 					@state = Game.STATE.LEVELS
 			when Game.STATE.LEVELS
 				@highlightOrStartLevel()
+			when Game.STATE.RUNNING
+				@level.tick @interval
 
 	init:()->
 		@state = Game.STATE.TITLE
@@ -67,3 +69,5 @@ class Game
 							@highlightedLevel = levelIndex
 
 	initLevel:(index)->
+		@level = @levelReader.read index
+		@remainingTime = 10

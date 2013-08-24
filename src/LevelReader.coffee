@@ -28,7 +28,40 @@ class LevelReader
 						hasCliffs = yes
 					when 'T'
 						tile = Tile.create 'sand'
+						tile.setObject { type: 'treasure' }
+					when 'o'
+						tile = Tile.create 'sand'
+						tile.setObject { type: 'tree' }
+					when 'c'
+						tile = Tile.create 'sand'
+						level.player = { x: x, y: y }
+					when 'C'
+						tile = Tile.create 'water'
+						level.player = { x: x, y: y }
+					when '>'
+						tile = Tile.create 'sand'
+						tile.setObject { type: 'cannon' }
+					when 'M'
+						tile = Tile.create 'sand'
+						tile.setObject { type: 'map' }
+					when 't'
+						tile = Tile.create 'sand'
+						tile.setObject { type: 'saber' }
+					when 'S'
+						tile = Tile.create 'sand'
+						tile.setObject { type: 'scroll' }
+					when 'X'
+						tile = Tile.create 'sand'
+						tile.setObject { type: 'explosives' }
+					when 'L'
+						tile = Tile.create 'sand'
+						tile.setObject { type: 'lead' }
+					when 'V'
+						tile = Tile.create 'sand'
+						tile.setObject { type: 'sextant' }
 					when '='
+						# Behave like cliffs, but will later be converted to a beach by
+						# changing the tile's type and subtype and removing the beach object.
 						tile = Tile.create 'cliff'
 						tile.setObject { type: 'beach' }
 					else
