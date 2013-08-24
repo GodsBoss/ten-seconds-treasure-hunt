@@ -100,6 +100,7 @@ class Game
 				if @possibleStep and e.type is 'click'
 					@level.player = @getPossiblePosition()
 					@checkPossibleStep()
+					@invokeObjectAction()
 
 	checkPossibleStep:()->
 		if @possibleStep
@@ -123,3 +124,8 @@ class Game
 			nextX++
 		x: nextX
 		y: nextY
+
+	invokeObjectAction:()->
+		tile = @level.get @level.player.x, @level.player.y
+		if tile.hasObject() and tile.getObject().action?
+			tile.getObject().action @game, @level.player
