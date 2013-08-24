@@ -29,8 +29,8 @@ class SpriteSheet
 
 	@createWithImage = (image, spriteData)->
 		canvas = document.createElement 'canvas'
-		canvas.width = 120 #image.width
-		canvas.height = 40 #image.height
+		canvas.width = image.width
+		canvas.height = image.height
 		context = canvas.getContext '2d'
 		context.drawImage image, 0, 0
 		new SpriteSheet context, context.getImageData(0, 0, canvas.width, canvas.height), spriteData
