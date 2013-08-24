@@ -14,3 +14,9 @@ class Loop
 
 	stop:()->
 		@running = no
+
+	@createInterval = (action, time)->
+		new Loop ((callback)->window.setTimeout callback, time), action
+
+	@createAnimationLoop = (action)->
+		new Loop ((callback)->window.requestAnimationFrame callback), action
