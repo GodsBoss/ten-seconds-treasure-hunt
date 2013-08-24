@@ -1,22 +1,30 @@
 class Game
-	@states =
-		overview: 1
-		message: 2
-		running: 3
+	@STATE =
+		START: 0
+		TITLE: 1
+		LEVELS: 2
+		RUNNING: 3
+		MESSAGE: 4
 
-	constructor:(@interval, @state = Game.states.overview)->
-		@water = []
+	constructor:(@interval, @levelReader)->
+		@state = Game.STATE.START
 
 	tick:()=>
-		if @water.length is 0
-			@initWater()
-		for x in [0..13]
-			for y in [0..9]
-				@water[x][y] += @interval
+		switch @state
+			when Game.STATE.START
+				@init()
+			when Game.STATE.TITLE
+				@scrollLevel()
 
-	initWater:()->
-		for x in [0..13]
-			line = []
-			for y in [0..9]
-				line.push Math.random()
-			@water.push line
+	init:()->
+		@state = Game.STATE.TITLE
+		@scrollOffset =
+			x: 0
+			y: 0
+		@level = @levelReader.read 'title', LevelReader.DO_NOT_VALIDATE
+
+	scrollLevel:()->
+		@scrollOffset.x++
+		@scrollOffset.y++
+		@scrollOffset.x %= @level.getWidth() * 24
+		@scrollOffset.y %= @level.getHeight() * 24

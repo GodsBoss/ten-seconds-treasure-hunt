@@ -20,7 +20,7 @@ init = (gfxImage)->
 	resizer.addListener graphics
 	resizer.resize()
 
-	game = new Game INTERVAL
+	game = new Game INTERVAL, new LevelReader(new LevelsData)
 	renderer = new GameRenderer game, graphics
 	Loop.startInterval game.tick, INTERVAL * 1000
 	Loop.startAnimationLoop renderer.render
