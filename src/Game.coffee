@@ -100,7 +100,16 @@ class Game
 						@possibleStep = 'up'
 				@checkPossibleStep()
 				if @possibleStep and e.type is 'click'
-					@player.moveTo @getPossiblePosition()
+					nextPosition = @getPossiblePosition()
+					playerTile = @level.get(@player.x, @player.y)
+					nextTile = @level.get(nextPosition.x, nextPosition.y)
+					if playerTile.type is 'beach' and nextTile.type is 'sand'
+						playerTile.setObject new Ship()
+						@player.type = 'foot'
+					else if @player.type is 'foot' and nextTile.type is 'beach'
+						if not nextTile.hasObject() or nextTile.getObject().type isnt 'ship'
+							return
+					@player.moveTo nextPosition
 					@checkPossibleStep()
 					@invokeObjectAction()
 
@@ -135,7 +144,7 @@ class Game
 	invokeObjectAction:()->
 		tile = @level.get @player.x, @player.y
 		if tile.hasObject() and tile.getObject().action?
-			tile.getObject().action @game, tile, @player
+			tile.getObject().action @g, tile, @player
 
 	winLevel:()->
 
