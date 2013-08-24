@@ -8,3 +8,10 @@ class SpritesData
 			y: 0
 			width: 120
 			height: 40
+		water:
+			x: 0
+			y: 48
+			width: 24
+			height: 24
+			frames: 4
+			time: 1.0

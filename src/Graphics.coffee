@@ -5,8 +5,8 @@ class Graphics
 	resize:(factor)->
 		@factor = factor
 
-	draw:(id, position)->
-		sprite = @spriteSheet.get id, @factor
+	draw:(id, position, animationTime)->
+		sprite = @spriteSheet.get id, @factor, animationTime
 		realX = position.x * @factor
 		realY = position.y * @factor
 		@context.putImageData sprite, realX, realY

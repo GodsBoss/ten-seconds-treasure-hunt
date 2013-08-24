@@ -1,3 +1,5 @@
+INTERVAL = 40 / 1000 # Interval in seconds
+
 init = (gfxImage)->
 	canvas = document.getElementById 'gfx'
 	context = canvas.getContext '2d'
@@ -18,8 +20,9 @@ init = (gfxImage)->
 	resizer.addListener graphics
 	resizer.resize()
 
-	game = new Game
+	game = new Game INTERVAL
 	renderer = new GameRenderer game, graphics
+	Loop.startInterval game.tick, INTERVAL * 1000
 	Loop.startAnimationLoop renderer.render
 
 window.onload = (e)->

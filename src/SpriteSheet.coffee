@@ -6,20 +6,34 @@ class SpriteSheet
 	constructor:(@context, @imageData, @spritesData)->
 		@cache = {}
 
-	get:(id, factor)->
+	get:(id, factor, animationTime)->
 		@cache[factor] ?= {}
-		@cache[factor][id] ?= @createSprite id, factor
+		@cache[factor][id] ?= {}
+		@cache[factor][id].spriteData ?= @spritesData.get id
+		@cache[factor][id].sprites ?= {}
+		animationIndex = @getAnimationIndex @cache[factor][id].spriteData, animationTime
+		@cache[factor][id].sprites['frame-' + animationIndex] ?= @createSprite id, factor, animationIndex
 
-	createSprite:(id, factor)->
+	getAnimationIndex:(spriteData, animationTime)->
+		if animationTime?
+			animationTime %= spriteData.time
+			Math.floor(animationTime * spriteData.frames / spriteData.time)
+		else
+			0
+
+	createSprite:(id, factor, animationIndex)->
 		spriteData = @spritesData.get id
 		resultWidth = spriteData.width * factor
 		resultHeight = spriteData.height * factor
 		resultImageData = @context.getImageData 0, 0, resultWidth, resultHeight
-		for sourceX in [spriteData.x..spriteData.x+spriteData.width-1]
-			for sourceY in [spriteData.y..spriteData.y+spriteData.height-1]
+		spriteX = spriteData.x + animationIndex * spriteData.width
+		spriteY = spriteData.y
+
+		for sourceX in [spriteX..spriteX+spriteData.width-1]
+			for sourceY in [spriteY..spriteY+spriteData.height-1]
 				sourceBaseIndex = 4*(@imageData.width*sourceY + sourceX)
-				targetXStart = (sourceX - spriteData.x)*factor
-				targetYStart = (sourceY - spriteData.y)*factor
+				targetXStart = (sourceX - spriteX)*factor
+				targetYStart = (sourceY - spriteY)*factor
 				for targetX in [targetXStart..targetXStart+factor-1]
 					for targetY in [targetYStart..targetYStart+factor-1]
 						targetBaseIndex = 4*(resultImageData.width*targetY + targetX)
