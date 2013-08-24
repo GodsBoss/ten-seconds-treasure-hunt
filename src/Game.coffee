@@ -15,6 +15,7 @@ class Game
 				@init()
 			when Game.STATE.TITLE
 				@scrollLevel()
+				@level.tick @interval
 
 	init:()->
 		@state = Game.STATE.TITLE
