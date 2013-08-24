@@ -120,3 +120,10 @@ class SpritesData
 			y: 96
 			width: 24
 			height: 24
+		'level-choose-border':
+			x: 120
+			y: 0
+			width:26
+			height:26
+			frames: 4
+			time: 0.5
