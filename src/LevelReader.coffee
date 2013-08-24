@@ -19,8 +19,10 @@ class LevelReader
 						tile = Tile.create 'sand'
 					when '~'
 						tile = Tile.create 'water'
+						tile.setObject { type: 'reef' }
 					when '^'
 						tile = Tile.create 'water'
+						tile.setObject { type: 'rock' }
 					when 'O'
 						tile = Tile.create 'cliff'
 						hasCliffs = yes
@@ -28,12 +30,14 @@ class LevelReader
 						tile = Tile.create 'sand'
 					when '='
 						tile = Tile.create 'cliff'
+						tile.setObject { type: 'beach' }
 					else
 						tile = Tile.create 'water'
 				level.set x, y, tile
 
 		if hasCliffs
 			@handleCliffs level
+			@convertCliffsToBeaches level
 
 		level
 
@@ -128,3 +132,20 @@ class LevelReader
 						if cliff[corner] is null
 							throw new Error 'Could not read level!'
 					tile.setSubType cliff[1]+cliff[2]*2+cliff[4]*4+cliff[8]*8
+
+	convertCliffsToBeaches:(level)->
+		for x in [0..level.getWidth()-1]
+			for y in [0..level.getHeight()-1]
+				tile = level.get x, y
+				if tile.type is 'cliff' and tile.hasObject() and tile.getObject().type == 'beach'
+					tile.removeObject()
+					tile.type = 'beach'
+					switch tile.getSubType()
+						when 3
+							tile.setSubType 'top'
+						when 5
+							tile.setSubType 'left'
+						when 10
+							tile.setSubType 'right'
+						when 12
+							tile.setSubType 'bottom'

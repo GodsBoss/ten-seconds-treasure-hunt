@@ -23,6 +23,12 @@ class Tile
 	getSubType:()->
 		@subType
 
+	getId:()->
+		if @subType
+			@type + '-' + @subType
+		else
+			@type
+
 	@TIMES =
 		water: 1.0
 
