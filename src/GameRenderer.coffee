@@ -61,12 +61,12 @@ class GameRenderer
 						@graphics.draw object.type, position, object.time
 					else
 						@graphics.draw object.type, position
-		playerTile = level.getPlayerTile()
-		if playerTile.type is 'sand'
-			@graphics.draw 'player-by-foot', {x: level.player.x * 24 + 80, y: level.player.y * 24 }, @game.time
+		player = @game.player
+		if player.type is Player.BY_FOOT
+			@graphics.draw 'player-by-foot', {x: player.x * 24 + 80, y: player.y * 24 }, @game.time
 		if @game.possibleStep
-			stepX = level.player.x * 24 + 80
-			stepY = level.player.y * 24
+			stepX = player.x * 24 + 80
+			stepY = player.y * 24
 			switch @game.possibleStep
 				when 'left'
 					stepX -= 24

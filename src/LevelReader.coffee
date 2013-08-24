@@ -34,31 +34,31 @@ class LevelReader
 						tile.setObject { type: 'tree' }
 					when 'c'
 						tile = Tile.create 'sand'
-						level.player = { x: x, y: y }
+						level.playerStart = { x: x, y: y }
 					when 'C'
 						tile = Tile.create 'water'
-						level.player = { x: x, y: y }
+						level.playerStart = { x: x, y: y }
 					when '>'
 						tile = Tile.create 'sand'
-						tile.setObject { type: 'cannon' }
+						tile.setObject new Item 'cannon'
 					when 'M'
 						tile = Tile.create 'sand'
-						tile.setObject { type: 'map' }
+						tile.setObject new Item 'map'
 					when 't'
 						tile = Tile.create 'sand'
-						tile.setObject { type: 'saber' }
+						tile.setObject new Item 'saber'
 					when 'S'
 						tile = Tile.create 'sand'
-						tile.setObject { type: 'scroll' }
+						tile.setObject new Item 'scroll'
 					when 'X'
 						tile = Tile.create 'sand'
-						tile.setObject { type: 'explosives' }
+						tile.setObject new Item 'explosives'
 					when 'L'
 						tile = Tile.create 'sand'
-						tile.setObject { type: 'lead' }
+						tile.setObject new Item 'lead'
 					when 'V'
 						tile = Tile.create 'sand'
-						tile.setObject { type: 'sextant' }
+						tile.setObject new Item 'sextant'
 					when '='
 						# Behave like cliffs, but will later be converted to a beach by
 						# changing the tile's type and subtype and removing the beach object.
