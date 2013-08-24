@@ -6,6 +6,12 @@ class GameRenderer
 		switch @game.state
 			when Game.STATE.TITLE
 				@renderTitle()
+			when Game.STATE.LEVELS
+				@renderLevels()
+			when Game.STATE.RUNNING
+				@renderRunningGame()
+			when Game.STATE.MESSAGE
+				@renderMessage()
 
 	renderTitle:()->
 		level = @game.level
@@ -33,3 +39,12 @@ class GameRenderer
 						@graphics.draw object.type, position, object.time
 					else
 						@graphics.draw object.type, position
+
+	renderLevels:()->
+		@graphics.draw 'level-screen', {x:0, y:0}
+		if @game.highlightedLevel?
+			@graphics.draw 'level-choose-border', LevelScreen.iconPositions[@game.highlightedLevel], @game.time
+
+	renderRunningGame:()->
+
+	renderMessage:()->

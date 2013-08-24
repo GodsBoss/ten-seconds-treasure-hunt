@@ -12,6 +12,7 @@ class InteractionQueue
 			type: 'mouse'
 			event: e
 
-	handleEvents:(handler)->
-		handler @events
+	retrieveEvents:()->
+		result = @events
 		@events = []
+		result

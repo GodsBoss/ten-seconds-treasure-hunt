@@ -15,13 +15,19 @@ init = (gfxImage)->
 	spriteSheet = SpriteSheet.createWithImage gfxImage, new SpritesData
 	graphics = new Graphics context, spriteSheet
 
+	interactionQueue = new InteractionQueue
+	canvas.onclick = interactionQueue.mouse
+	canvas.onmousemove = interactionQueue.mouse
+
+	game = new Game INTERVAL, new LevelReader(new LevelsData), interactionQueue
+	renderer = new GameRenderer game, graphics
+
 	resizer = new Resizer window, { width: 320, height: 240 }, { horizontal: 10, vertical: 20 }
 	resizer.addListener new CanvasResizeListener canvas
 	resizer.addListener graphics
+	resizer.addListener game
 	resizer.resize()
 
-	game = new Game INTERVAL, new LevelReader(new LevelsData)
-	renderer = new GameRenderer game, graphics
 	Loop.startInterval game.tick, INTERVAL * 1000
 	Loop.startAnimationLoop renderer.render
 

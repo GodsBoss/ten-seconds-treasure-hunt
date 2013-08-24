@@ -127,3 +127,8 @@ class SpritesData
 			height:26
 			frames: 4
 			time: 0.5
+		'level-screen':
+			x: 320
+			y: 240
+			width: 320
+			height: 240
