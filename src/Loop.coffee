@@ -10,8 +10,8 @@ class Loop
 
 	step:()=>
 		if @running
-			@action()
 			@repeatCallback @step
+			@action()
 
 	stop:()->
 		@running = no
