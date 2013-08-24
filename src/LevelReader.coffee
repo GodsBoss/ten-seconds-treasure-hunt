@@ -13,8 +13,10 @@ class LevelReader
 				char = data.level[y].charAt x
 				switch char
 					when '.'
+						tile = LevelReader.createWater()
 					else
 						tile = LevelReader.createWater()
+				level.set x, y, tile
 		level
 
 	@createWater:()->

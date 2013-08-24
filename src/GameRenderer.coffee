@@ -24,5 +24,6 @@ class GameRenderer
 					drawY -= level.getHeight()*24
 				switch tile.type
 					when 'water'
+						@graphics.draw 'water', { x: drawX, y: drawY }, tile.time
 					else
 						@graphics.draw 'water', { x: drawX, y: drawY }, tile.time
