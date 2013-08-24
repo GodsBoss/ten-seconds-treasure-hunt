@@ -39,12 +39,19 @@ class SpriteSheet
 						targetBaseIndex = 4*(resultImageData.width*targetY + targetX)
 						for colorIndex in [0..3]
 							resultImageData.data[targetBaseIndex+colorIndex] = @imageData.data[sourceBaseIndex+colorIndex]
-		resultImageData
+		canvas = document.createElement 'canvas'
+		canvas.width = resultWidth
+		canvas.height = resultHeight
+		context = canvas.getContext '2d'
+		context.clearRect 0, 0, resultWidth, resultHeight
+		context.putImageData resultImageData, 0, 0
+		canvas
 
 	@createWithImage = (image, spriteData)->
 		canvas = document.createElement 'canvas'
 		canvas.width = image.width
 		canvas.height = image.height
 		context = canvas.getContext '2d'
+		context.clearRect 0, 0, canvas.width, canvas.height
 		context.drawImage image, 0, 0
 		new SpriteSheet context, context.getImageData(0, 0, canvas.width, canvas.height), spriteData
