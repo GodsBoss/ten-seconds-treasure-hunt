@@ -12,6 +12,6 @@ window.onload = (e)->
 		document.body.appendChild hint
 		return
 
-	resizer = new Resizer window, { width: 320, height: 240 }
+	resizer = new Resizer window, { width: 320, height: 240 }, { horizontal: 10, vertical: 20 }
 	resizer.addListener new CanvasResizeListener canvas
 	resizer.resize()
