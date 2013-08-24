@@ -22,8 +22,11 @@ class GameRenderer
 					drawX -= level.getWidth()*24
 				if drawY > 240
 					drawY -= level.getHeight()*24
+				position = { x: drawX, y: drawY }
 				switch tile.type
 					when 'water'
-						@graphics.draw 'water', { x: drawX, y: drawY }, tile.time
-					else
-						@graphics.draw 'water', { x: drawX, y: drawY }, tile.time
+						@graphics.draw 'water', position, tile.time
+					when 'sand'
+						@graphics.draw 'sand', position
+					when 'cliff'
+						@graphics.draw 'cliff-' + tile.getSubType(), position

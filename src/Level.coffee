@@ -16,16 +16,11 @@ class Level
 	tick:(time)->
 		for x in [0..@size.width-1]
 			for y in [0..@size.height-1]
-				tile = @tiles[x + '-' + y]
-				if tile.time?
-					tile.time = (tile.time + time) % Level.TIMES[tile.type]
+				@tiles[x + '-' + y].tick time
 
 	@create = (size)->
 		tiles = {}
 		for x in [0..size.width-1]
 			for y in [0..size.height-1]
-				tiles[x + '-' + y] = LevelReader.createWater
+				tiles[x + '-' + y] = Tile.create 'water'
 		new Level size, tiles
-
-	@TIMES =
-		water: 1

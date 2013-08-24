@@ -90,3 +90,33 @@ class SpritesData
 			y: 72
 			width: 24
 			height: 24
+		'reef':
+			x: 0
+			y: 96
+			width: 24
+			height: 24
+		'rock':
+			x: 24
+			y: 96
+			width: 24
+			height: 24
+		'beach-top':
+			x: 48
+			y: 96
+			width: 24
+			height: 24
+		'beach-left':
+			x: 72
+			y: 96
+			width: 24
+			height: 24
+		'beach-right':
+			x: 96
+			y: 96
+			width: 24
+			height: 24
+		'beach-bottom':
+			x: 120
+			y: 96
+			width: 24
+			height: 24
