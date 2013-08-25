@@ -1,5 +1,6 @@
 class Level
 	constructor:(@size, @tiles)->
+		@whirlpools = {}
 
 	get:(x, y)->
 		@tiles[x + '-' + y]
@@ -20,6 +21,15 @@ class Level
 
 	getPlayerTile:()->
 		@tiles[@player.x + '-' + @player.y]
+
+	setWhirlpool:(position)->
+		@whirlpools[position.x+'-'+position.y] = position
+
+	getOtherWhirlpoolPosition:(position)->
+		id = position.x + '-' + position.y
+		for otherId, otherPosition of @whirlpools
+			if id isnt otherId
+				return otherPosition
 
 	@create = (size)->
 		tiles = {}

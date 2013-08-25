@@ -87,6 +87,10 @@ class LevelReader
 						# See '='.
 						tile = Tile.create 'cliff'
 						tile.setObject { type: 'beach-with-ship' }
+					when '@'
+						tile = Tile.create 'water'
+						tile.setObject new Whirlpool Math.random()
+						level.setWhirlpool {x: x, y: y}
 					else
 						tile = Tile.create 'water'
 				level.set x, y, tile

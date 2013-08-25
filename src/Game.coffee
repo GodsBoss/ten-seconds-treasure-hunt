@@ -188,3 +188,12 @@ class Game
 			else
 				@messageIndex++
 				@message = @level.messages.after[@messageIndex]
+
+	movePlayerTo:(position)->
+		@player.moveTo position
+		if @level.get(position.x, position.y).type == 'sand'
+			leaveShip()
+		else
+			enterShip()
+		@checkPossibleStep()
+
