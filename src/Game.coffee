@@ -9,7 +9,7 @@ class Game
 	constructor:(@interval, @levelReader, @interactionQueue)->
 		@state = Game.STATE.START
 		@factor = 1
-		@finishedLevels = 0
+		@finishedLevels = 10
 		@time = 0
 
 	tick:()=>
