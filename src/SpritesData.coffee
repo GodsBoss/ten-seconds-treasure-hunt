@@ -300,3 +300,10 @@ class SpritesData
 			height: 24
 			frames: 4
 			time: 1.0
+		kraken:
+			x: 216
+			y: 192
+			width: 24
+			height: 24
+			frames: 4
+			time: 1.0
