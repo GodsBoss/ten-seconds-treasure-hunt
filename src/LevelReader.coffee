@@ -64,6 +64,11 @@ class LevelReader
 						# changing the tile's type and subtype and removing the beach object.
 						tile = Tile.create 'cliff'
 						tile.setObject { type: 'beach' }
+					when 'u'
+						# Behave like cliffs, but will later be converted to a beach with a ship on it.
+						# See '='.
+						tile = Tile.create 'cliff'
+						tile.setObject { type: 'beach-with-ship' }
 					else
 						tile = Tile.create 'water'
 				level.set x, y, tile
@@ -172,8 +177,11 @@ class LevelReader
 		for x in [0..level.getWidth()-1]
 			for y in [0..level.getHeight()-1]
 				tile = level.get x, y
-				if tile.type is 'cliff' and tile.hasObject() and tile.getObject().type == 'beach'
-					tile.removeObject()
+				if tile.type is 'cliff' and tile.hasObject() and (tile.getObject().type is 'beach' or tile.getObject().type is 'beach-with-ship')
+					if tile.getObject().type is 'beach-with-ship'
+						tile.setObject new Ship
+					else
+						tile.removeObject()
 					tile.type = 'beach'
 					switch tile.getSubType()
 						when 3
