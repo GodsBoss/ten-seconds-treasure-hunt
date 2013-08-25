@@ -235,6 +235,9 @@ class LevelReader
 		@height = if @swapXY then width else height
 
 	translate:(x, y)->
-			rx = if @negateX then @width-1-x else x
-			ry = if @negateY then @height-1-y else y
-			if @swapXY then {x: ry, y: rx} else {x: rx, y: ry}
+			if @swapXY
+				x: if @negateX then @width-1-y else y
+				y: if @negateY then @height-1-x else x
+			else
+				x: if @negateX then @width-1-x else x
+				y: if @negateY then @height-1-y else y
