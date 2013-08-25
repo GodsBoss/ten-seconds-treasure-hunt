@@ -286,3 +286,10 @@ class SpritesData
 			y: 192
 			width: 24
 			height: 24
+		natives:
+			x: 24
+			y: 192
+			width: 24
+			height: 24
+			frames: 4
+			time: 1.0

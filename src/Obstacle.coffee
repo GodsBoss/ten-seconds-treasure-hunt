@@ -1,7 +1,11 @@
 class Obstacle
 	obstacle: yes
 
-	constructor:(@type)->
+	constructor:(@type, @time)->
+
+	tick:(time)->
+		if @time?
+			@time = (@time + time) % 1.0
 
 	isDestructible:()->
 		Obstacle.destructibles[@type]?
