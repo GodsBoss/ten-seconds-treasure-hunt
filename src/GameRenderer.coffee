@@ -46,6 +46,7 @@ class GameRenderer
 			@graphics.draw 'level-choose-border', LevelScreen.iconPositions[@game.highlightedLevel], @game.time
 
 	renderRunningGame:()->
+		@graphics.draw 'sidebar', {x: 0, y: 0}
 		level = @game.level
 		for x in [0..level.getWidth()-1]
 			for y in [0..level.getHeight()-1]

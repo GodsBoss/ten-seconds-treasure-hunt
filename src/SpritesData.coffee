@@ -225,3 +225,8 @@ class SpritesData
 			height: 24
 			frames: 4
 			time: 0.5
+		sidebar:
+			x: 560
+			y: 0
+			width: 80
+			height: 240
