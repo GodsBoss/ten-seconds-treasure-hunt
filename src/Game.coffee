@@ -192,8 +192,8 @@ class Game
 	movePlayerTo:(position)->
 		@player.moveTo position
 		if @level.get(position.x, position.y).type == 'sand'
-			leaveShip()
+			@player.leaveShip()
 		else
-			enterShip()
+			@player.enterShip()
 		@checkPossibleStep()
 
