@@ -99,16 +99,16 @@ class LevelsData
 						message: 'You are learning quickly.'
 				]
 			level:[
-				'..........'
+				'....~^^~~.'
 				'.OOOOO....'
-				'.Oc,,u....'
+				'~Oc,,u....'
 				'.OOOOO....'
-				'..........'
-				'..........'
+				'.........~'
+				'..~~.....^'
 				'.......OOO'
-				'.......=,T'
-				'.......OOO'
-				'..........'
+				'^~~~...=,T'
+				'..^^...OOO'
+				'~.......~~'
 			]
 		4:
 			title: 'Tutorial: Map reading skills'
@@ -128,16 +128,16 @@ class LevelsData
 						message: 'You are not only a pirate, you are a tracker!'
 				]
 			level:[
-				'.O,,,O....'
-				'.OM,,O....'
-				'.OOO=O....'
-				'..........'
-				'..C.......'
-				'..........'
+				'.Oo,oO^^~.'
+				'.OM,,O^~~~'
+				'.OOO=O~~..'
+				'.^........'
+				'..C...~~~.'
+				'.~........'
+				'....OOOO.~'
+				'~...=,TO..'
 				'....OOOO..'
-				'....=,TO..'
-				'....OOOO..'
-				'..........'
+				'.....^^~..'
 			]
 		5:
 			title: 'Tutorial: Walled'
@@ -153,16 +153,16 @@ class LevelsData
 						message: 'Walls do not impede you. Great!'
 				]
 			level:[
-				'.O,TO.....'
+				'~O,TO^~~..'
 				'.OWWOO....'
-				'.O,,XO....'
+				'~O,,XO....'
 				'.O=OOO....'
-				'..........'
-				'..........'
-				'...C......'
-				'..........'
-				'..........'
-				'..........'
+				'.........^'
+				'.........~'
+				'^..C...OOO'
+				'....~^OO,o'
+				'.~..^OOoo,'
+				'...~~O,ooo'
 			]
 		6:
 			title: 'Tutorial: Natives'
@@ -178,16 +178,16 @@ class LevelsData
 						message: 'These natives were no match for you.'
 				]
 			level:[
-				'..........'
-				'.....OOOOO'
-				'.....O,N,T'
-				'.....O=OOO'
-				'..........'
-				'OOOO......'
+				'..~~O,oo,,'
+				'...^OOoooo'
+				'^....O,N,T'
+				'~....O=OOO'
+				'~~^.....~~'
+				'OOOO....^.'
 				',c,u......'
 				'OOOO=O....'
-				'...O,O....'
-				'...OtO....'
+				'...O,O^..~'
+				'...OtO~~~~'
 			]
 		7:
 			title: 'Tutorial: Competition'
@@ -203,7 +203,7 @@ class LevelsData
 						message: 'This would have taught them. If they had survived.'
 				]
 			level:[
-				'......Oooo'
+				'^....~Oooo'
 				'......Oooo'
 				'....O=O,oo'
 				'~~..O,,,,o'
