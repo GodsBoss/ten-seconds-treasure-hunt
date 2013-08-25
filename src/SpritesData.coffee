@@ -235,3 +235,8 @@ class SpritesData
 			y: 40
 			width: 7
 			height: 7
+		alphabet:
+			x: 8
+			y: 40
+			width: 6
+			height: 6
