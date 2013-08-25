@@ -1,6 +1,14 @@
 class Treasure
 	type: 'treasure'
 
+	constructor:(@hidden = no)->
+		@type = if @hidden then 'cross' else 'treasure'
+
+	hide:()->
+		@hidden = yes
+		@type = 'cross'
+
 	action:(game, tile, player)->
-		tile.removeObject()
-		game.winLevel()
+		if player.hasItem 'map'
+			tile.removeObject()
+			game.winLevel()

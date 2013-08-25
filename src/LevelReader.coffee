@@ -9,6 +9,8 @@ class LevelReader
 		height = data.level.length
 		level = Level.create { width: width, height: height }
 		hasCliffs = no
+		treasureHidden = no
+		treasurePosition = null
 		for x in [0..width-1]
 			for y in [0..height-1]
 				char = data.level[y].charAt x
@@ -28,7 +30,8 @@ class LevelReader
 						hasCliffs = yes
 					when 'T'
 						tile = Tile.create 'sand'
-						tile.setObject new Treasure
+						tile.setObject new Treasure treasureHidden
+						treasurePosition = {x: x, y: y}
 					when 'o'
 						tile = Tile.create 'sand'
 						tile.setObject new Obstacle 'tree'
@@ -44,6 +47,9 @@ class LevelReader
 					when 'M'
 						tile = Tile.create 'sand'
 						tile.setObject new Item 'map'
+						if treasurePosition?
+							level.get(treasurePosition.x, treasurePosition.y).getObject().hide()
+						treasureHidden = yes
 					when 't'
 						tile = Tile.create 'sand'
 						tile.setObject new Item 'saber'
