@@ -29,6 +29,10 @@ class Game
 				@level.tick @interval
 				@handleUserInteraction()
 				@loseIfTimeIsUp()
+			when Game.STATE.MESSAGE
+				@level.tick @interval
+				if @justClicked()
+					@nextMessage()
 
 	init:()->
 		@state = Game.STATE.TITLE
@@ -65,8 +69,8 @@ class Game
 					iconPosition = LevelScreen.iconPositions[levelIndex]
 					if iconPosition? and x >= iconPosition.x and x <= iconPosition.x + 24 and y >= iconPosition.y and y <= iconPosition.y + 24
 						if e.type is 'click'
-							@initLevel levelIndex
 							@state = Game.STATE.RUNNING
+							@initLevel levelIndex
 							return
 						if e.type is 'mousemove'
 							@highlightedLevel = levelIndex
@@ -78,6 +82,11 @@ class Game
 		if @level.get(@player.x, @player.y).type isnt 'sand'
 			@player.enterShip()
 		@remainingTime = 10
+		if @level.messages.before.length > 0
+			@messageType = 'before'
+			@messageIndex = 0
+			@message = @level.messages.before[0]
+			@state = Game.STATE.MESSAGE
 
 	handleUserInteraction:()->
 		events = @interactionQueue.retrieveEvents()
@@ -150,7 +159,13 @@ class Game
 
 	winLevel:()->
 		@finishedLevels = Math.max @finishedLevels, @currentLevelIndex
-		@state = Game.STATE.LEVELS
+		if @level.messages.after.length > 0
+			@state = Game.STATE.MESSAGE
+			@messageType = 'after'
+			@messageIndex = 0
+			@message = @level.messages.after[0]
+		else
+			@state = Game.STATE.LEVELS
 
 	loseLevel:()->
 		@state = Game.STATE.LEVELS
@@ -159,3 +174,17 @@ class Game
 		if @remainingTime < 0
 			@remainingTime = 0
 			@loseLevel()
+
+	nextMessage:()->
+		if @messageType is 'before'
+			if @messageIndex >= @level.messages.before.length - 1
+				@state = Game.STATE.RUNNING
+			else
+				@messageIndex++
+				@message = @level.messages.before[@messageIndex]
+		if @messageType is 'after'
+			if @messageIndex >= @level.messages.after.length - 1
+				@state = Game.STATE.LEVELS
+			else
+				@messageIndex++
+				@message = @level.messages.after[@messageIndex]

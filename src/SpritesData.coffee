@@ -1,5 +1,26 @@
 class SpritesData
+
+	punctuation = ['!', ',', '.', '(', ')']
+
 	get:(id)->
+		if id.substring(0, 7) is 'letter-'
+			alphabet = SpritesData.sprites.alphabet
+			letter = id.substring(7, 8).toUpperCase()
+			if letter.match /[A-Z]/
+				return {
+					x: alphabet.x + (letter.charCodeAt(0) - 65) * alphabet.width
+					y: alphabet.y
+					width: alphabet.width
+					height: alphabet.height
+				}
+			for char, index in punctuation
+				if char is letter
+					return {
+						x: alphabet.x + (index + 26) * alphabet.width
+						y: alphabet.y
+						width: alphabet.width
+						height: alphabet.height
+					}
 		SpritesData.sprites[id] or throw new Error 'Could not find sprite with id ' + id
 
 	@sprites =
@@ -179,6 +200,11 @@ class SpritesData
 			height: 24
 			frames: 4
 			time:1.0
+		'captain':
+			x: 0
+			y: 144
+			width: 24
+			height: 24
 		'player-by-ship':
 			x: 96
 			y: 144
@@ -240,3 +266,13 @@ class SpritesData
 			y: 40
 			width: 6
 			height: 6
+		'message-box':
+			x: 0
+			y: 434
+			width: 164
+			height: 46
+		skull:
+			x: 96
+			y: 168
+			width: 24
+			height: 24

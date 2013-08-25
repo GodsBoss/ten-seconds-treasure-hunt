@@ -1,5 +1,5 @@
 class GameRenderer
-	constructor:(@game, @graphics)->
+	constructor:(@game, @graphics, @textRenderer)->
 
 	render:()=>
 		@graphics.fill
@@ -64,7 +64,7 @@ class GameRenderer
 						@graphics.draw object.type, position
 		player = @game.player
 		@graphics.draw 'player-by-' + player.type, {x: player.x * 24 + 80, y: player.y * 24 }, @game.time
-		if @game.possibleStep
+		if @game.possibleStep and @game.state is Game.STATE.RUNNING
 			stepX = player.x * 24 + 80
 			stepY = player.y * 24
 			switch @game.possibleStep
@@ -81,3 +81,9 @@ class GameRenderer
 			@graphics.draw 'clock', {x: (i-1)*8, y: 1}
 
 	renderMessage:()->
+		@renderRunningGame()
+		message = @game.message
+		@graphics.draw 'message-box', { x: 119, y: 35 }
+		@textRenderer.render @game.message.message, { x: 152, y: 40 }, 128
+		icon = message.icon ? 'skull'
+		@graphics.draw icon, { x: 124, y: 40 }

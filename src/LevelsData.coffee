@@ -23,10 +23,22 @@ class LevelsData
 				'...............'
 			]
 		1:
-			title: 'Running around'
+			title: 'Tutorial: Landlubber'
 			messages:
-				before: []
-				after: []
+				before: [
+						message: 'Arr! You are a pirate captain!'
+						icon: 'captain'
+					,
+						message: 'Your destiny is to find treasure.'
+						icon: 'treasure'
+					,
+						message: 'But move quickly, because you only have ten seconds to get it!'
+					,
+						message: 'Now go (click or touch the field to go to) to the chest to obtain your loot.'
+				]
+				after: [
+						message: 'Great! You made it. The next adventure is waiting.'
+				]
 			level:[
 				'........^~'
 				'..^~......'
@@ -40,9 +52,17 @@ class LevelsData
 				'..~~......'
 			]
 		2:
-			title: 'Landing'
+			title: 'Tutorial: Beach boy'
 			messages:
-				before: []
+				before: [
+						message: 'A real pirate travels by boat. You can move it just like you move yourself.'
+					,
+						message: 'But treasure chests can only be found on land!'
+					,
+						message: 'Your ship can only land on beaches, not cliffs.'
+					,
+						message: 'Sail to the beach and obtain the chest.'
+				]
 				after: []
 			level:[
 				'..........'

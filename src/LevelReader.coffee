@@ -72,6 +72,8 @@ class LevelReader
 			@handleCliffs level
 			@convertCliffsToBeaches level
 
+		level.messages = data.messages
+
 		level
 
 	handleCliffs:(level)->

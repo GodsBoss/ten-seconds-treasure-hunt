@@ -20,7 +20,8 @@ init = (gfxImage)->
 	canvas.onmousemove = interactionQueue.mouse
 
 	game = new Game INTERVAL, new LevelReader(new LevelsData), interactionQueue
-	renderer = new GameRenderer game, graphics
+	textRenderer = new TextRenderer graphics, { width: 6, height: 6 }
+	renderer = new GameRenderer game, graphics, textRenderer
 
 	resizer = new Resizer window, { width: 320, height: 240 }, { horizontal: 10, vertical: 20 }
 	resizer.addListener new CanvasResizeListener canvas
