@@ -9,7 +9,7 @@ class Game
 	constructor:(@interval, @levelReader, @interactionQueue)->
 		@state = Game.STATE.START
 		@factor = 1
-		@finishedLevels = 3
+		@finishedLevels = 0
 		@time = 0
 
 	tick:()=>
@@ -28,6 +28,7 @@ class Game
 				@remainingTime -= @interval
 				@level.tick @interval
 				@handleUserInteraction()
+				@loseIfTimeIsUp()
 
 	init:()->
 		@state = Game.STATE.TITLE
@@ -60,7 +61,7 @@ class Game
 				x = (e.clientX - e.target.offsetLeft) / @factor
 				y = (e.clientY - e.target.offsetTop) / @factor
 				delete @highlightedLevel
-				for levelIndex in [1..@finishedLevels]
+				for levelIndex in [1..@finishedLevels+1]
 					iconPosition = LevelScreen.iconPositions[levelIndex]
 					if iconPosition? and x >= iconPosition.x and x <= iconPosition.x + 24 and y >= iconPosition.y and y <= iconPosition.y + 24
 						if e.type is 'click'
@@ -71,6 +72,7 @@ class Game
 							@highlightedLevel = levelIndex
 
 	initLevel:(index)->
+		@currentLevelIndex = index
 		@level = @levelReader.read index
 		@player = new Player @level.playerStart.x, @level.playerStart.y
 		if @level.get(@player.x, @player.y).type isnt 'sand'
@@ -144,8 +146,16 @@ class Game
 	invokeObjectAction:()->
 		tile = @level.get @player.x, @player.y
 		if tile.hasObject() and tile.getObject().action?
-			tile.getObject().action @g, tile, @player
+			tile.getObject().action @, tile, @player
 
 	winLevel:()->
+		@finishedLevels = Math.max @finishedLevels, @currentLevelIndex
+		@state = Game.STATE.LEVELS
 
 	loseLevel:()->
+		@state = Game.STATE.LEVELS
+
+	loseIfTimeIsUp:()->
+		if @remainingTime < 0
+			@remainingTime = 0
+			@loseLevel()

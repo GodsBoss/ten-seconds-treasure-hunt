@@ -230,3 +230,8 @@ class SpritesData
 			y: 0
 			width: 80
 			height: 240
+		clock:
+			x: 0
+			y: 40
+			width: 7
+			height: 7

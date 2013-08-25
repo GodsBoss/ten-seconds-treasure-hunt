@@ -77,5 +77,7 @@ class GameRenderer
 				when 'down'
 					stepY += 24
 			@graphics.draw 'arrow-' + @game.possibleStep, {x: stepX, y: stepY }
+		for i in [1..Math.min 10, Math.ceil @game.remainingTime]
+			@graphics.draw 'clock', {x: (i-1)*8, y: 1}
 
 	renderMessage:()->
