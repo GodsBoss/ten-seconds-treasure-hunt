@@ -20,7 +20,8 @@ class Obstacle
 		Obstacle.accessibles[@type]
 
 	action:(game, tile, player)->
-		tile.removeObject()
+		if @isDestructible()
+			tile.removeObject()
 
 	@destructibles =
 		wall: 'explosives'

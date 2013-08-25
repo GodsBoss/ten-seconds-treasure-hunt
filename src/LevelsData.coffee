@@ -35,6 +35,7 @@ class LevelsData
 						message: 'But move quickly, because you only have ten seconds to get it!'
 					,
 						message: 'Now go (click or touch the field to go to) to the chest to obtain your loot.'
+						icon: 'arrow-left'
 				]
 				after: [
 						message: 'Great! You made it. The next adventure is waiting.'
@@ -184,15 +185,15 @@ class LevelsData
 				before: []
 				after: []
 			level:[
-				'..........'
-				'..........'
-				'..........'
-				'..........'
-				'..........'
-				'..........'
-				'..........'
-				'..........'
-				'..........'
+				'...~~~O,,,'
+				'......O,o,'
+				'~~C...=,oL'
+				'~^...OOooo'
+				'~~~~~OT,,o'
+				'~~~^~OOO,o'
+				'^...~~~O=O'
+				'~~........'
+				'....~^~...'
 				'..........'
 			]
 		10:
