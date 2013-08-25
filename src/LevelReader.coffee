@@ -7,10 +7,12 @@ class LevelReader
 		data = @levelsData.get id
 		width = data.level[0].length
 		height = data.level.length
-		level = Level.create { width: width, height: height }
+
+		@initTranslation width, height
+
+		level = Level.create { width: @width, height: @height }
 		hasCliffs = no
 		treasureHidden = no
-		treasurePosition = null
 		for x in [0..width-1]
 			for y in [0..height-1]
 				char = data.level[y].charAt x
@@ -42,25 +44,22 @@ class LevelReader
 						hasCliffs = yes
 					when 'T'
 						tile = Tile.create 'sand'
-						tile.setObject new Treasure treasureHidden
-						treasurePosition = {x: x, y: y}
+						tile.setObject new Treasure
 					when 'o'
 						tile = Tile.create 'sand'
 						tile.setObject new Obstacle 'tree'
 					when 'c'
 						tile = Tile.create 'sand'
-						level.playerStart = { x: x, y: y }
+						tile.setObject { type: 'player' }
 					when 'C'
 						tile = Tile.create 'water'
-						level.playerStart = { x: x, y: y }
+						tile.setObject { type: 'player' }
 					when '>'
 						tile = Tile.create 'sand'
 						tile.setObject new Item 'cannon'
 					when 'M'
 						tile = Tile.create 'sand'
 						tile.setObject new Item 'map'
-						if treasurePosition?
-							level.get(treasurePosition.x, treasurePosition.y).getObject().hide()
 						treasureHidden = yes
 					when 't'
 						tile = Tile.create 'sand'
@@ -90,10 +89,23 @@ class LevelReader
 					when '@'
 						tile = Tile.create 'water'
 						tile.setObject new Whirlpool Math.random()
-						level.setWhirlpool {x: x, y: y}
 					else
 						tile = Tile.create 'water'
-				level.set x, y, tile
+				r = @translate x, y
+				level.set r.x, r.y, tile
+
+		for x in [0..@width-1]
+			for y in [0..@height-1]
+				tile = level.get x, y
+				if tile.hasObject()
+					object = tile.getObject()
+					if object.type is 'whirlpool'
+						level.setWhirlpool {x: x, y: y}
+					if treasureHidden and object.type is 'treasure'
+						object.hide()
+					if object.type is 'player'
+						level.playerStart = { x: x, y: y }
+						tile.removeObject()
 
 		if hasCliffs
 			@handleCliffs level
@@ -214,3 +226,15 @@ class LevelReader
 							tile.setSubType 'right'
 						when 12
 							tile.setSubType 'bottom'
+
+	initTranslation:(width, height)->
+		@swapXY = Math.random() > 0.5
+		@negateX = Math.random() > 0.5
+		@negateY = Math.random() > 0.5
+		@width = if @swapXY then height else width
+		@height = if @swapXY then width else height
+
+	translate:(x, y)->
+			rx = if @negateX then @width-1-x else x
+			ry = if @negateY then @height-1-y else y
+			if @swapXY then {x: ry, y: rx} else {x: rx, y: ry}
