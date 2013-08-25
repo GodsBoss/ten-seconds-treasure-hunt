@@ -31,6 +31,9 @@ class LevelReader
 					when 'N'
 						tile = Tile.create 'sand'
 						tile.setObject new Obstacle 'natives', Math.random()
+					when 'P'
+						tile = Tile.create 'water'
+						tile.setObject new Obstacle 'pirates', Math.random()
 					when 'O'
 						tile = Tile.create 'cliff'
 						hasCliffs = yes

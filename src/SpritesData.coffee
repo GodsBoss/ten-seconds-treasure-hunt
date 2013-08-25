@@ -293,3 +293,10 @@ class SpritesData
 			height: 24
 			frames: 4
 			time: 1.0
+		pirates:
+			x: 120
+			y: 192
+			width: 24
+			height: 24
+			frames: 4
+			time: 1.0
