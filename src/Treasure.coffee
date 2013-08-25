@@ -9,6 +9,6 @@ class Treasure
 		@type = 'cross'
 
 	action:(game, tile, player)->
-		if player.hasItem 'map'
+		if not @hidden or player.hasItem 'map'
 			tile.removeObject()
 			game.winLevel()
