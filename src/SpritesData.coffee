@@ -29,6 +29,11 @@ class SpritesData
 			y: 0
 			width: 120
 			height: 40
+		finished:
+			x: 224
+			y: 0
+			width: 120
+			height: 40
 		water:
 			x: 0
 			y: 48
@@ -278,6 +283,11 @@ class SpritesData
 			height: 24
 		cross:
 			x: 120
+			y: 168
+			width: 24
+			height: 24
+		'big-clock':
+			x: 144
 			y: 168
 			width: 24
 			height: 24

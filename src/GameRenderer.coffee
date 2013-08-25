@@ -12,13 +12,18 @@ class GameRenderer
 				@renderRunningGame()
 			when Game.STATE.MESSAGE
 				@renderMessage()
+			when Game.STATE.FINISHED
+				@renderFinishedGame()
 
 	renderTitle:()->
-		level = @game.level
-		@renderTitleLevel level, @game.scrollOffset.x, @game.scrollOffset.y
+		@renderScrollingLevel @game.level, @game.scrollOffset.x, @game.scrollOffset.y
 		@graphics.draw 'title', { x: 100, y: 20 }
 
-	renderTitleLevel:(level, offsetX, offsetY)->
+	renderFinishedGame:()->
+		@renderScrollingLevel @game.level, @game.scrollOffset.x, @game.scrollOffset.y
+		@graphics.draw 'finished', { x: 100, y: 20 }
+
+	renderScrollingLevel:(level, offsetX, offsetY)->
 		for x in [0..level.getWidth()-1]
 			for y in [0..level.getHeight()-1]
 				tile = level.get x, y

@@ -482,6 +482,7 @@ class LevelsData
 					,
 						message: 'This story may be over, but you will find others, for sure!'
 				]
+			final: yes
 
 ###
 

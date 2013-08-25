@@ -5,6 +5,7 @@ class Game
 		LEVELS: 2
 		RUNNING: 3
 		MESSAGE: 4
+		FINISHED: 5
 
 	constructor:(@interval, @levelReader, @interactionQueue)->
 		@state = Game.STATE.START
@@ -33,6 +34,11 @@ class Game
 				@level.tick @interval
 				if @justClicked()
 					@nextMessage()
+			when Game.STATE.FINISHED
+				@scrollLevel()
+				@level.tick @interval
+				if @justClicked()
+					@state = Game.STATE.LEVELS
 
 	init:()->
 		@state = Game.STATE.TITLE
@@ -165,10 +171,17 @@ class Game
 			@messageIndex = 0
 			@message = @level.messages.after[0]
 		else
-			@state = Game.STATE.LEVELS
+			if @level.final
+				@finishedGame()
+			else
+				@state = Game.STATE.LEVELS
 
 	loseLevel:()->
-		@state = Game.STATE.LEVELS
+		@messageType = 'lose'
+		@message =
+			icon: 'big-clock'
+			message: 'Your time ran out! Be faster next time!'
+		@state = Game.STATE.MESSAGE
 
 	loseIfTimeIsUp:()->
 		if @remainingTime < 0
@@ -176,6 +189,8 @@ class Game
 			@loseLevel()
 
 	nextMessage:()->
+		if @messageType is 'lose'
+			@state = Game.STATE.LEVELS
 		if @messageType is 'before'
 			if @messageIndex >= @level.messages.before.length - 1
 				@state = Game.STATE.RUNNING
@@ -184,7 +199,10 @@ class Game
 				@message = @level.messages.before[@messageIndex]
 		if @messageType is 'after'
 			if @messageIndex >= @level.messages.after.length - 1
-				@state = Game.STATE.LEVELS
+				if @level.final
+					@finishedGame()
+				else
+					@state = Game.STATE.LEVELS
 			else
 				@messageIndex++
 				@message = @level.messages.after[@messageIndex]
@@ -197,3 +215,6 @@ class Game
 			@player.enterShip()
 		@checkPossibleStep()
 
+	finishedGame:()->
+		@init()
+		@state = Game.STATE.FINISHED

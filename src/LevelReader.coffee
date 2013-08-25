@@ -11,6 +11,7 @@ class LevelReader
 		@initTranslation width, height
 
 		level = Level.create { width: @width, height: @height }
+		level.final = data.final
 		hasCliffs = no
 		treasureHidden = no
 		for x in [0..width-1]
