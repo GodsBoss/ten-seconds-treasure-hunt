@@ -80,6 +80,7 @@ class Game
 							return
 						if e.type is 'mousemove'
 							@highlightedLevel = levelIndex
+							@levelTitle = @levelReader.getTitle levelIndex
 
 	initLevel:(index)->
 		@currentLevelIndex = index

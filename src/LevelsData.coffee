@@ -84,7 +84,7 @@ class LevelsData
 				'..........'
 			]
 		3:
-			title: 'Take a ship'
+			title: 'Tutorial: Take a ship'
 			messages:
 				before: [
 						message: 'Normal people have a clear concept of property.'
@@ -111,7 +111,7 @@ class LevelsData
 				'..........'
 			]
 		4:
-			title: 'Treasure map'
+			title: 'Tutorial: Map reading skills'
 			messages:
 				before: [
 						message: 'Treasure chests are rarely just standing around, waiting to be looted.'
@@ -140,7 +140,7 @@ class LevelsData
 				'..........'
 			]
 		5:
-			title: 'Wall'
+			title: 'Tutorial: Walled'
 			messages:
 				before: [
 						message: 'Walls can be a real hindrance.'
@@ -165,7 +165,7 @@ class LevelsData
 				'..........'
 			]
 		6:
-			title: 'Natives'
+			title: 'Tutorial: Natives'
 			messages:
 				before: [
 						message: 'Many islands are inhabited by primitive peoples.'
@@ -190,7 +190,7 @@ class LevelsData
 				'...OtO....'
 			]
 		7:
-			title: 'Enemy ship'
+			title: 'Tutorial: Competition'
 			messages:
 				before: [
 						message: 'You are not the only pirate captain around.'
@@ -215,7 +215,7 @@ class LevelsData
 				'......=,,>'
 			]
 		8:
-			title: 'Kraken'
+			title: 'Tutorial: Monsters of the Sea'
 			messages:
 				before: [
 						message: 'The Sea is big, deep and mysterious.'
@@ -244,7 +244,7 @@ class LevelsData
 				'.....=,,,S'
 			]
 		9:
-			title: 'Reefs'
+			title: 'Tutorial: Shoals'
 			messages:
 				before: [
 						message: 'The Sea is big and deep... but not everywhere.'
@@ -273,7 +273,7 @@ class LevelsData
 				'..........'
 			]
 		10:
-			title: 'Whirlpool'
+			title: 'Tutorial: Unusual travelling'
 			messages:
 				before: [
 						message: 'A fast, but dangerous way to travel the sea is a whirlpool.'

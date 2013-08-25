@@ -49,6 +49,7 @@ class GameRenderer
 		@graphics.draw 'level-screen', {x:0, y:0}
 		if @game.highlightedLevel?
 			@graphics.draw 'level-choose-border', LevelScreen.iconPositions[@game.highlightedLevel], @game.time
+			@textRenderer.render @game.levelTitle, { x: 4, y: 231 }, 999999
 
 	renderRunningGame:()->
 		@graphics.draw 'sidebar', {x: 0, y: 0}

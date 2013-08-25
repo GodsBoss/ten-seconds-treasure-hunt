@@ -1,6 +1,6 @@
 class SpritesData
 
-	punctuation = ['!', ',', '.', '(', ')', '?']
+	punctuation = ['!', ',', '.', '(', ')', '?', ':']
 
 	get:(id)->
 		if id.substring(0, 7) is 'letter-'

@@ -242,3 +242,6 @@ class LevelReader
 			else
 				x: if @negateX then @width-1-x else x
 				y: if @negateY then @height-1-y else y
+
+	getTitle:(id)->
+		@levelsData.get(id).title
