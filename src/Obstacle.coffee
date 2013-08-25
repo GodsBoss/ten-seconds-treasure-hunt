@@ -15,6 +15,9 @@ class Obstacle
 	neededForAccess:()->
 		Obstacle.accessibles[@type]
 
+	action:(game, tile, player)->
+		tile.removeObject()
+
 	@destructibles =
 		wall: 'explosives'
 		natives: 'saber'

@@ -25,6 +25,9 @@ class LevelReader
 					when '^'
 						tile = Tile.create 'water'
 						tile.setObject new Obstacle 'rock'
+					when 'W'
+						tile = Tile.create 'sand'
+						tile.setObject new Obstacle 'wall'
 					when 'O'
 						tile = Tile.create 'cliff'
 						hasCliffs = yes
