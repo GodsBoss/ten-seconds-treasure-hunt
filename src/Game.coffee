@@ -12,6 +12,7 @@ class Game
 		@factor = 1
 		@finishedLevels = 10
 		@time = 0
+		@messageWaitTime = 0
 
 	tick:()=>
 		@time += @interval
@@ -32,7 +33,8 @@ class Game
 				@loseIfTimeIsUp()
 			when Game.STATE.MESSAGE
 				@level.tick @interval
-				if @justClicked()
+				@messageWaitTime = Math.max 0, @messageWaitTime - @interval
+				if @justClicked() and @messageWaitTime is 0
 					@nextMessage()
 			when Game.STATE.FINISHED
 				@scrollLevel()
@@ -195,6 +197,7 @@ class Game
 			@messageType = 'after'
 			@messageIndex = 0
 			@message = @level.messages.after[0]
+			@messageWaitTime = 0.25
 		else
 			if @level.final
 				@finishedGame()
@@ -207,6 +210,7 @@ class Game
 			icon: 'big-clock'
 			message: 'Your time ran out! Be faster next time!'
 		@state = Game.STATE.MESSAGE
+		@messageWaitTime = 0.25
 
 	loseIfTimeIsUp:()->
 		if @remainingTime < 0
