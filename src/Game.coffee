@@ -98,6 +98,27 @@ class Game
 	handleUserInteraction:()->
 		events = @interactionQueue.retrieveEvents()
 		for event in events
+			if event.type is 'key'
+				e = event.event
+				move = no
+				if e.charCode is 0 and e.which is 0
+					switch e.keyCode
+						when 37
+							@possibleStep = 'left'
+							move = yes
+						when 38
+							@possibleStep = 'up'
+							move = yes
+						when 39
+							@possibleStep = 'right'
+							move = yes
+						when 40
+							@possibleStep = 'down'
+							move = yes
+					if move
+						@checkPossibleStep()
+						if @possibleStep
+							@movePlayer()
 			if event.type is 'mouse'
 				e = event.event
 				x = (e.clientX - e.target.offsetLeft) / @factor
@@ -118,18 +139,21 @@ class Game
 						@possibleStep = 'up'
 				@checkPossibleStep()
 				if @possibleStep and e.type is 'click'
-					nextPosition = @getPossiblePosition()
-					playerTile = @level.get(@player.x, @player.y)
-					nextTile = @level.get(nextPosition.x, nextPosition.y)
-					if playerTile.type is 'beach' and nextTile.type is 'sand'
-						playerTile.setObject new Ship()
-						@player.type = 'foot'
-					else if @player.type is 'foot' and nextTile.type is 'beach'
-						if not nextTile.hasObject() or nextTile.getObject().type isnt 'ship'
-							return
-					@player.moveTo nextPosition
-					@checkPossibleStep()
-					@invokeObjectAction()
+					@movePlayer()
+
+	movePlayer:()->
+		nextPosition = @getPossiblePosition()
+		playerTile = @level.get(@player.x, @player.y)
+		nextTile = @level.get(nextPosition.x, nextPosition.y)
+		if playerTile.type is 'beach' and nextTile.type is 'sand'
+			playerTile.setObject new Ship()
+			@player.type = 'foot'
+		else if @player.type is 'foot' and nextTile.type is 'beach'
+			if not nextTile.hasObject() or nextTile.getObject().type isnt 'ship'
+				return
+		@player.moveTo nextPosition
+		@checkPossibleStep()
+		@invokeObjectAction()
 
 	checkPossibleStep:()->
 		if @possibleStep

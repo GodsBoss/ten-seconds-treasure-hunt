@@ -18,6 +18,7 @@ init = (gfxImage)->
 	interactionQueue = new InteractionQueue
 	canvas.onclick = interactionQueue.mouse
 	canvas.onmousemove = interactionQueue.mouse
+	document.body.onkeypress = interactionQueue.key
 
 	game = new Game INTERVAL, new LevelReader(new LevelsData), interactionQueue
 	textRenderer = new TextRenderer graphics, { width: 6, height: 6 }
