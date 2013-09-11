@@ -38,8 +38,9 @@ class LevelsData
 					,
 						message: 'But move quickly, because you only have ten seconds to get it!'
 					,
-						message: 'Now go (click or touch the field to go to) to the chest to obtain your loot.'
-						icon: 'arrow-left'
+						message: 'You can use the mouse or the arrow keys to control yourself.'
+					,
+						message: 'Now go to the chest to obtain your loot.'
 				]
 				after: [
 						message: 'Great! You made it. The next adventure is waiting.'

@@ -317,3 +317,8 @@ class SpritesData
 			height: 24
 			frames: 4
 			time: 1.0
+		'message-okay':
+			x: 28
+			y: 175
+			width: 16
+			height: 10

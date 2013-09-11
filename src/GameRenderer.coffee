@@ -106,3 +106,5 @@ class GameRenderer
 		@textRenderer.render @game.message.message, { x: 152, y: 40 }, 128
 		icon = message.icon ? 'skull'
 		@graphics.draw icon, { x: 124, y: 40 }
+		if @game.isLastMessage()
+			@graphics.draw 'message-okay', { x: 266, y: 70 }

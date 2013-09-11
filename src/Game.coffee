@@ -236,6 +236,12 @@ class Game
 				@messageIndex++
 				@message = @level.messages.after[@messageIndex]
 
+	isLastMessage:()->
+		if @messageType is 'before' or @messageType is 'after'
+			@level.messages[@messageType].length - 1 == @messageIndex
+		else
+			no
+
 	movePlayerTo:(position)->
 		@player.moveTo position
 		if @level.get(position.x, position.y).type == 'sand'
