@@ -1,7 +1,7 @@
 class CanvasResizeListener
 	constructor:(@canvas)->
-		@canvasWidth = canvas.width
-		@canvasHeight = canvas.height
+		@canvasWidth = @canvas.width
+		@canvasHeight = @canvas.height
 
 	resize:(factor)=>
 		@canvas.width = @canvasWidth * factor
