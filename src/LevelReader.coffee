@@ -48,7 +48,7 @@ class LevelReader
 						tile.setObject new Treasure
 					when 'o'
 						tile = Tile.create 'sand'
-						tile.setObject new Obstacle 'tree'
+						tile.setObject new Obstacle 'tree', Math.random()
 					when 'c'
 						tile = Tile.create 'sand'
 						tile.setObject { type: 'player' }

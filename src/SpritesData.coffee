@@ -229,6 +229,8 @@ class SpritesData
 			y: 96
 			width: 24
 			height: 24
+			frames: 2
+			time: 1.0
 		'arrow-up':
 			x: 0
 			y: 168
