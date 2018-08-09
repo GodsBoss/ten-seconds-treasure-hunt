@@ -67,7 +67,7 @@ class LevelReader
 						tile.setObject new Item 'saber'
 					when 'S'
 						tile = Tile.create 'sand'
-						tile.setObject new Item 'scroll'
+						tile.setObject new Item 'scroll', Math.random()
 					when 'X'
 						tile = Tile.create 'sand'
 						tile.setObject new Item 'explosives'

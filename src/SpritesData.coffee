@@ -179,10 +179,12 @@ class SpritesData
 			width: 24
 			height: 24
 		scroll:
-			x: 96
-			y: 120
+			x: 0
+			y: 216
 			width: 24
 			height: 24
+			frames: 4
+			time: 1.0
 		explosives:
 			x: 120
 			y: 120
