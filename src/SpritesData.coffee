@@ -159,10 +159,12 @@ class SpritesData
 			width: 320
 			height: 240
 		treasure:
-			x: 0
-			y: 120
+			x: 96
+			y: 216
 			width: 24
 			height: 24
+			frames: 3
+			time: 1.0
 		cannon:
 			x: 24
 			y: 120

@@ -3,6 +3,10 @@ class Treasure
 
 	constructor:(@hidden = no)->
 		@type = if @hidden then 'cross' else 'treasure'
+		@time = 0
+
+	tick:(time)->
+		@time = (@time + time) % 1.0
 
 	hide:()->
 		@hidden = yes
