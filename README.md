@@ -11,4 +11,4 @@ Real-time pirate journeys are long and boring. Do you really want to sit days, w
 License
 -------
 
-All source and media is licensed under the terms of the GPLv3. See LICENSE for more information.
+All source and media is licensed under the terms of the GPLv3. See [LICENSE](./LICENSE) for more information.
