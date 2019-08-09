@@ -3,6 +3,8 @@ Ten Seconds Treasure Hunt
 
 You are a pirate captain on a hunt for treasures!
 
+You can [play Ten Seconds Treasure Hunt online](http://js.godsboss.org/ten-seconds-treasure-hunt/)!
+
 Ten Seconds?
 ------------
 
