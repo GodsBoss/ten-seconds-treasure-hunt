@@ -5,9 +5,11 @@ class Treasure
 		@time = 0
 
 	tick:(time)->
-		@time = (@time + time) % 1.0
+		if not @hidden
+			@time = (@time + time) % 1.0
 
 	hide:()->
+		@time = null
 		@hidden = yes
 		@type = 'cross'
 
