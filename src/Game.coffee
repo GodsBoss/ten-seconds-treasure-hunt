@@ -103,7 +103,7 @@ class Game
 			if event.type is 'key'
 				e = event.event
 				move = no
-				if e.charCode is 0 and e.which is 0
+				if e.charCode is 0
 					switch e.keyCode
 						when 37
 							@possibleStep = 'left'
