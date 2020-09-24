@@ -1,4 +1,4 @@
-FROM godsboss/coffeescript:2.3.1 AS jsbuilder
+FROM godsboss/coffeescript:2.5.1 AS jsbuilder
 
 WORKDIR /root
 COPY src/ /root/
