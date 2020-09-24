@@ -1,6 +1,4 @@
 class Treasure
-	type: 'treasure'
-
 	constructor:(@hidden = no)->
 		@type = if @hidden then 'cross' else 'treasure'
 		@time = 0
