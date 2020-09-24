@@ -29,7 +29,7 @@ RUN cat \
   > game.coffee
 RUN coffee -c game.coffee
 
-FROM godsboss/gimp:2.8.22 AS gfxbuilder
+FROM godsboss/gimp:2.10.18 AS gfxbuilder
 WORKDIR /root
 COPY gfx.sh /root
 COPY export.scm /root
