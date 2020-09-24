@@ -18,7 +18,7 @@ init = (gfxImage)->
 	interactionQueue = new InteractionQueue
 	canvas.onclick = interactionQueue.mouse
 	canvas.onmousemove = interactionQueue.mouse
-	document.body.onkeypress = interactionQueue.key
+	window.addEventListener "keydown", interactionQueue.key, false
 
 	game = new Game INTERVAL, new LevelReader(new LevelsData), interactionQueue
 	textRenderer = new TextRenderer graphics, { width: 6, height: 6 }
@@ -40,7 +40,7 @@ window.onload = (e)->
 
 	gfxImage.onload = ()->
 		init gfxImage
-		
+
 	gfxImage.onerror = ()->
 		document.body.removeChild document.getElementById 'gfx'
 		hint = document.createElement 'p'
